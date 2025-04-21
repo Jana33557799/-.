@@ -14,16 +14,16 @@ function generateCertificate() {
     ctx.textAlign = 'center';
     ctx.fillStyle = '#333';
 
-    // اسم عضو هيئة التدريس - رفع إلى y = 300
+    // اسم عضو هيئة التدريس - رفع إلى y = 305
     ctx.font = 'bold 30px Cairo';
-    ctx.fillText(teacherName || ' ', canvas.width / 2, 300);
+    ctx.fillText(teacherName || ' ', canvas.width / 2, 305);
 
     // اسم الطالب - تحت المربع بثلاث أسطر تقريباً
     ctx.font = 'bold 34px Cairo';
     ctx.fillText(studentName || ' ', canvas.width / 2, 355);
 
     // رسالة الشكر - حجم خط أكبر
-    ctx.font = 'bold 32px Cairo';
+    ctx.font = 'bold 34px Cairo';
     wrapText(ctx, message, canvas.width / 2, 410, 750, 40);
   };
 }
