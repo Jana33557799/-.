@@ -23,7 +23,7 @@ function generateCertificate() {
     ctx.fillText(studentName || ' ', canvas.width / 2, 355);
 
     // رسالة الشكر - تكبير الخط إلى 34px
-    ctx.font = 'bold 34px Cairo';
+    ctx.font = 'bold 33px Cairo';
     wrapText(ctx, message, canvas.width / 2, 410, 750, 40);
   };
 }
