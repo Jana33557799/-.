@@ -14,9 +14,9 @@ function generateCertificate() {
     ctx.textAlign = 'center';
     ctx.fillStyle = '#333';
 
-    // اسم عضو هيئة التدريس - رفع إلى y = 258
+    // اسم عضو هيئة التدريس - رفع إلى y = 260
     ctx.font = 'bold 30px Cairo';
-    ctx.fillText(teacherName || ' ', canvas.width / 2, 258);
+    ctx.fillText(teacherName || ' ', canvas.width / 2, 260);
 
     // اسم الطالب - تحت المربع بثلاث أسطر تقريباً
     ctx.font = 'bold 34px Cairo';
