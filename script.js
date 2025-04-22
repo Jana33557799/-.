@@ -50,10 +50,10 @@ function generateCertificate() {
       message = `في لحظة تخرجي، لا يسعني إلا أن أقف وقفة تقدير وإجلال لكل من علمني، وساندني، وكان له بالغ الأثر في رحلتي التعليمية.`;
     }
 
-    wrapText(ctx, message, canvas.width / 2, 400, 700, 40);
+    wrapText(ctx, message, canvas.width - 100, 200, 700, 42);
 
     ctx.font = "bold 32px Arial";
-    ctx.fillText(studentName, canvas.width / 2, 500);
+    ctx.fillText(studentName, canvas.width / 2, 580);
 
     canvas.style.display = "block";
   };
