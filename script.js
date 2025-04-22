@@ -1,4 +1,20 @@
-
+function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
+  const words = text.split(' ');
+  let line = '';
+  for (let n = 0; n < words.length; n++) {
+    const testLine = line + words[n] + ' ';
+    const metrics = ctx.measureText(testLine);
+    const testWidth = metrics.width;
+    if (testWidth > maxWidth && n > 0) {
+      ctx.fillText(line, x, y);
+      line = words[n] + ' ';
+      y += lineHeight;
+    } else {
+      line = testLine;
+    }
+  }
+  ctx.fillText(line, x, y);
+}
 function generateCertificate() {
   const teacherName = document.getElementById("teacherName").value.trim();
   const studentName = document.getElementById("studentName").value.trim();
@@ -33,7 +49,7 @@ function generateCertificate() {
       message = `في لحظة تخرجي، لا يسعني إلا أن أقف وقفة تقدير وإجلال...`;
     }
 
-    ctx.fillText(message, canvas.width / 2, 400);
+    wrapText(ctx, message, canvas.width / 2, 400, 700, 40);
 
     ctx.font = "bold 32px Arial";
     ctx.fillText(studentName, canvas.width / 2, 500);
