@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>بطاقة الشكر</title>
+  <style>
+    body {
+      background-color: #E6E6FA;
+      font-family: "Arial", sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+    }
+    select, input, button {
+      padding: 10px;
+      font-size: 16px;
+      margin: 10px 0;
+      width: 100%;
+    }
+    canvas {
+      display: none;
+      margin-top: 20px;
+      border: 2px solid #ccc;
+    }
+    .instruction {
+      color: red;
+      margin-top: 20px;
+      font-size: 18px;
+    }
+    .thankyou-options {
+      background: #f4f4f4;
+      padding: 10px;
+      text-align: right;
+      border: 1px solid #ccc;
+      margin-bottom: 20px;
+    }
+    .thankyou-options p {
+      margin: 5px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>إنشاء بطاقة شكر</h2>
+
+    <input type="text" id="teacherName" placeholder="اسم عضو هيئة التدريس" />
+    <input type="text" id="studentName" placeholder="اسم الطالب" />
+
+    <select id="thankMessage">
+      <option value="1">الرسالة 1</option>
+      <option value="2">الرسالة 2</option>
+    </select>
+
+    <div class="thankyou-options">
+      <p><strong>الرسالة 1:</strong> إلى من زرع فينا بذور الطموح، وسقاها علمًا واهتمامًا حتى أينعت إنجازًا وتخرجًا… كنتم لنا أكثر من معلّم...</p>
+      <p><strong>الرسالة 2:</strong> في لحظة تخرجي، لا يسعني إلا أن أقف وقفة تقدير وإجلال...</p>
+    </div>
+
+    <button onclick="generateCertificate()">إنشاء الشهادة</button>
+    <button onclick="downloadImage()">تحميل الشهادة</button>
+
+    <canvas id="certificateCanvas" width="800" height="600"></canvas>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
