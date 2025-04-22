@@ -1,0 +1,122 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>شهادة شكر</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #EBD9FF; /* بنفسجي فاتح */
+      text-align: center;
+      padding: 20px;
+    }
+    canvas {
+      max-width: 100%;
+      height: auto;
+      border: 2px solid #ccc;
+      margin-top: 20px;
+    }
+    .instructions {
+      color: red;
+      font-size: 18px;
+      margin-top: 10px;
+    }
+    select, input {
+      margin: 10px;
+      padding: 10px;
+      font-size: 16px;
+    }
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <h2>نموذج إصدار شهادة شكر</h2>
+  <input type="text" id="teacherName" placeholder="اسم عضو هيئة التدريس"><br>
+  <select id="thankYouMessage">
+    <option value="إلى من زرع فينا بذور الطموح، وسقاها علمًا واهتمامًا حتى أينعت إنجازًا وتخرجًا… كنتم لنا أكثر من معلّم، كنتم الدافع حين تراجعنا، والسند حين ترددنا، والنور حين غابت الرؤية. لم تكن كلماتكم تمرُّ مرورًا عابرًا، بل كانت ترسخ في الذاكرة وتبني فينا الإنسان قبل أن تُشكّل فينا الطالب. وفي يوم التخرّج، لا يسعنا إلا أن نلتفت بامتنان لمن كان له الفضل بعد الله في وصولنا، شكرًا لكم… فقد كنتم أثرًا لا يُمحى، وعلامة فارقة في دربنا العلمي والإنساني">
+      الرسالة الأولى
+    </option>
+    <option value="في لحظة تخرجي، لا يسعني إلا أن أقف وقفة تقدير وإجلال، لمن كان النور في طريق العتمة، والدافع في لحظة التراجع، والقدوة حين ضاعت المعايير. لقد تركتم فينا أثرًا لا تمحوه الأيام، وزرعتم في قلوبنا امتنانًا لا يزول. شكرًا لكم، لأنكم كنتم أكثر من معلّم… كنتم مصدرًا للثقة، ومثالًا للرسالة النبيلة">
+      الرسالة الثانية
+    </option>
+  </select><br>
+  <input type="text" id="studentName" placeholder="اسم الطالب"><br>
+  <button onclick="generateCertificate()">إنشاء الشهادة</button>
+  <br>
+  <canvas id="certificateCanvas" width="2480" height="3508"></canvas>
+  <br>
+  <button onclick="downloadImage()">تحميل كصورة</button>
+  <button onclick="downloadPDF()">تحميل كـ PDF</button>
+  <p class="instructions">على الطالب ارسال بطاقة الشكر للاستاذ عن طريق البريد الالكتروني</p>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script>
+    const canvas = document.getElementById('certificateCanvas');
+    const ctx = canvas.getContext('2d');
+    const image = new Image();
+    image.src = 'certificate.png';
+
+    function generateCertificate() {
+      const teacherName = document.getElementById('teacherName').value;
+      const message = document.getElementById('thankYouMessage').value;
+      const studentName = document.getElementById('studentName').value;
+
+      image.onload = () => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+        
+        ctx.fillStyle = 'white';
+        ctx.textAlign = 'center';
+
+        ctx.font = '50px Arial';
+        ctx.fillText(teacherName, canvas.width / 2, 300);
+
+        ctx.font = '34px Arial';
+        wrapText(ctx, message, canvas.width / 2, 400, 1800, 40);
+
+        ctx.font = '50px Arial';
+        ctx.fillText(studentName, canvas.width / 2, 1100);
+      };
+    }
+
+    function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
+      const words = text.split(' ');
+      let line = '';
+      for (let n = 0; n < words.length; n++) {
+        const testLine = line + words[n] + ' ';
+        const metrics = ctx.measureText(testLine);
+        const testWidth = metrics.width;
+        if (testWidth > maxWidth && n > 0) {
+          ctx.fillText(line, x, y);
+          line = words[n] + ' ';
+          y += lineHeight;
+        } else {
+          line = testLine;
+        }
+      }
+      ctx.fillText(line, x, y);
+    }
+
+    function downloadImage() {
+      const link = document.createElement('a');
+      link.download = 'certificate.png';
+      link.href = canvas.toDataURL();
+      link.click();
+    }
+
+    function downloadPDF() {
+      const { jsPDF } = window.jspdf;
+      const pdf = new jsPDF('p', 'pt', [canvas.width, canvas.height]);
+      const imgData = canvas.toDataURL('image/png');
+      pdf.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
+      pdf.save('certificate.pdf');
+    }
+  </script>
+</body>
+</html>
