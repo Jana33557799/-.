@@ -41,7 +41,7 @@ function generateCertificate() {
     // اسم الدكتورة
     ctx.font = "bold 30px Arial";
     ctx.textAlign = "center";
-    ctx.fillText(teacherName, canvas.width / 2, 120);
+    ctx.fillText(teacherName, canvas.width / 2, 160);
 
     // الرسالة
     let message = "";
@@ -51,14 +51,14 @@ function generateCertificate() {
       message = `في لحظة تخرجي، لا يسعني إلا أن أقف وقفة تقدير وإجلال لكل من علمني، وساندني، وكان له بالغ الأثر في رحلتي التعليمية.`;
     }
 
-    ctx.font = "24px Arial";
+    ctx.font = "15px Arial";
     ctx.textAlign = "right";
-    wrapText(ctx, message, canvas.width - 100, 180, 700, 38);
+    wrapText(ctx, message, canvas.width - 100, 200, 700, 33);
 
     // اسم الطالب
     ctx.font = "bold 30px Arial";
     ctx.textAlign = "center";
-    ctx.fillText(studentName, canvas.width / 2, 620);
+    ctx.fillText(studentName, canvas.width / 2, 580);
 
     canvas.style.display = "block";
   };
