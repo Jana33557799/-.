@@ -42,9 +42,9 @@ function generateCertificate() {
     // اسم عضو هيئة التدريس (فوق)
     ctx.font = "bold 28px Arial";
     ctx.textAlign = "center";
-    ctx.fillText(teacherName, canvas.width / 2, 150);
+    ctx.fillText(teacherName, canvas.width / 2, 120);
 
-    // الرسالة (وسط الصفحة)
+    // نص رسالة الشكر (وسط الصفحة بخط أصغر)
     let message = "";
     if (messageOption === "1") {
       message = `إلى من زرع فينا بذور الطموح، وسقاها علمًا واهتمامًا حتى أينعت إنجازًا وتخرجًا…
@@ -59,14 +59,14 @@ function generateCertificate() {
 شكرًا لكم، لأنكم كنتم أكثر من معلّم… كنتم مصدرًا للثقة، ومثالًا للرسالة النبيلة .`;
     }
 
-    ctx.font = "16px Arial";
+    ctx.font = "14px Arial";
     ctx.textAlign = "right";
-    wrapText(ctx, message, canvas.width - 100, 240, 700, 28);
+    wrapText(ctx, message, canvas.width - 80, 170, 700, 24);
 
     // اسم الطالب تحت الرسالة
-    ctx.font = "bold 24px Arial";
+    ctx.font = "bold 20px Arial";
     ctx.textAlign = "center";
-    ctx.fillText(studentName, canvas.width / 2, 420);
+    ctx.fillText(studentName, canvas.width / 2, 500);
 
     canvas.style.display = "block";
   };
