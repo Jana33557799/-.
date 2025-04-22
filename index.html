@@ -5,6 +5,14 @@
   <meta charset="UTF-8" />
   <title>بطاقة الشكر</title>
   <style>
+  .instructions {
+    color: red;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 30px;
+  }
+</style>
+  <style>
     body {
       background-color: #E6E6FA;
       font-family: "Arial", sans-serif;
@@ -55,8 +63,7 @@
       <p><strong>الرسالة 1:</strong> إلى من زرع فينا بذور الطموح، وسقاها علمًا واهتمامًا حتى أينعت إنجازًا وتخرجًا… كنتم لنا أكثر من معلّم، كنتم الدافع حين تراجعنا، والسند حين ترددنا، والنور حين غابت الرؤية.</p>
       <p><strong>الرسالة 2:</strong> في لحظة تخرجي، لا يسعني إلا أن أقف وقفة تقدير وإجلال لكل من علمني، وساندني، وكان له بالغ الأثر في رحلتي التعليمية.</p>
     </div>
-<div class="instructions">
-  يجب على الطالب عند اصدار بطاقة الشكر ارسالها لاستاذ المقرر عبر البريد الإلكتروني
+
 </div>
     <button onclick="generateCertificate()">إنشاء الشهادة</button>
     <button onclick="downloadImage()">تحميل الشهادة</button>
@@ -64,6 +71,7 @@
     <canvas id="certificateCanvas" width="800" height="600"></canvas>
   </div>
 
-  <script src="script.js"></script>
+<script src="script.js"></script>
+  <p class="instructions">يجب على الطالب عند اصدار بطاقة الشكر ارسالها لاستاذ المقرر عبر البريد الإلكتروني</p>
 </body>
 </html>
