@@ -59,12 +59,12 @@ function generateCertificate() {
 شكرًا لكم، لأنكم كنتم أكثر من معلّم… كنتم مصدرًا للثقة، ومثالًا للرسالة النبيلة .`;
     }
 
-    ctx.font = "20px Arial";
+    ctx.font = "25px Arial";
     ctx.textAlign = "right";
     wrapText(ctx, message, canvas.width - 80, 260, 700, 30);
 
     // اسم الطالب تحت الرسالة
-    ctx.font = "bold 20px Arial";
+    ctx.font = "bold 24px Arial";
     ctx.textAlign = "center";
     ctx.fillText(studentName, canvas.width / 2, 450);
 
