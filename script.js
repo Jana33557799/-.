@@ -61,12 +61,12 @@ function generateCertificate() {
 
     ctx.font = "14px Arial";
     ctx.textAlign = "right";
-    wrapText(ctx, message, canvas.width - 80, 500, 700, 24);
+    wrapText(ctx, message, canvas.width - 80, 300, 700, 24);
 
     // اسم الطالب تحت الرسالة
     ctx.font = "bold 20px Arial";
     ctx.textAlign = "center";
-    ctx.fillText(studentName, canvas.width / 2, 300);
+    ctx.fillText(studentName, canvas.width / 2, 200);
 
     canvas.style.display = "block";
   };
