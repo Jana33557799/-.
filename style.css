@@ -1,0 +1,19 @@
+
+body {
+  background-color: #e6e6fa;
+  font-family: 'Arial', sans-serif;
+  direction: rtl;
+  text-align: center;
+}
+.container {
+  margin: 30px auto;
+  padding: 20px;
+  max-width: 700px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #ccc;
+}
+.note {
+  color: red;
+  margin-top: 20px;
+}

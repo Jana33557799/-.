@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>شهادة الشكر</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>موقع إصدار شهادة الشكر</h1>
+    <form id="certificateForm">
+      <label>اسم عضو هيئة التدريس:</label>
+      <input type="text" id="teacherName" required />
+      <label>اختر رسالة الشكر:</label>
+      <select id="thankYouMessage">
+        <option value="message1">إلى من زرع فينا بذور الطموح...</option>
+        <option value="message2">في لحظة تخرجي، لا يسعني إلا أن أقف...</option>
+      </select>
+      <label>اسم الطالب:</label>
+      <input type="text" id="studentName" required />
+      <button type="submit">إنشاء الشهادة</button>
+    </form>
+    <p class="note">على الطالب ارسال بطاقة الشكر للاستاذ عن طريق البريد الالكتروني</p>
+    <div id="certificateResult"></div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
