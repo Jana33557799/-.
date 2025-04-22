@@ -64,7 +64,7 @@ function generateCertificate() {
     wrapText(ctx, message, canvas.width - 80, 260, 700, 36);
 
     // اسم الطالب تحت الرسالة
-    ctx.font = "bold 24px Arial";
+    ctx.font = "bold 23px Arial";
     ctx.textAlign = "center";
     ctx.fillText(studentName, canvas.width / 2, 470);
 
