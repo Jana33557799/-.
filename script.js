@@ -62,8 +62,3 @@ function generateCertificate() {
 function downloadImage() {
   const canvas = document.getElementById("certificateCanvas");
   const image = canvas.toDataURL("image/png");
-  const link = document.createElement("a");
-  link.download = "certificate.png";
-  link.href = image;
-  link.click();
-}
