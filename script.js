@@ -15,6 +15,7 @@ function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
   }
   ctx.fillText(line, x, y);
 }
+
 function generateCertificate() {
   const teacherName = document.getElementById("teacherName").value.trim();
   const studentName = document.getElementById("studentName").value.trim();
@@ -44,9 +45,9 @@ function generateCertificate() {
     ctx.font = "34px Arial";
     let message = "";
     if (messageOption === "1") {
-      message = `إلى من زرع فينا بذور الطموح، وسقاها علمًا واهتمامًا حتى أينعت إنجازًا وتخرجًا…`;
+      message = `إلى من زرع فينا بذور الطموح، وسقاها علمًا واهتمامًا حتى أينعت إنجازًا وتخرجًا… كنتم لنا أكثر من معلّم، كنتم الدافع حين تراجعنا، والسند حين ترددنا، والنور حين غابت الرؤية.`;
     } else {
-      message = `في لحظة تخرجي، لا يسعني إلا أن أقف وقفة تقدير وإجلال...`;
+      message = `في لحظة تخرجي، لا يسعني إلا أن أقف وقفة تقدير وإجلال لكل من علمني، وساندني، وكان له بالغ الأثر في رحلتي التعليمية.`;
     }
 
     wrapText(ctx, message, canvas.width / 2, 400, 700, 40);
@@ -65,13 +66,4 @@ function downloadImage() {
   link.download = "certificate.png";
   link.href = image;
   link.click();
-}
-
-function downloadPDF() {
-  const canvas = document.getElementById("certificateCanvas");
-  const imgData = canvas.toDataURL("image/png");
-
-  const pdf = new jsPDF('l', 'px', [canvas.width, canvas.height]);
-  pdf.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
-  pdf.save("certificate.pdf");
 }
