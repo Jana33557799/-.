@@ -61,7 +61,7 @@ function generateCertificate() {
 
     ctx.font = "20px Arial";
     ctx.textAlign = "right";
-    wrapText(ctx, message, canvas.width - 80, 300, 700, 24);
+    wrapText(ctx, message, canvas.width - 80, 300, 700, 30);
 
     // اسم الطالب تحت الرسالة
     ctx.font = "bold 20px Arial";
