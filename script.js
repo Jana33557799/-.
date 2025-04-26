@@ -68,7 +68,7 @@ function generateCertificate() {
     ctx.textAlign = "center";
     ctx.fillText(studentName, canvas.width / 2, 475);
 // إرسال البيانات إلى Google Sheets
-fetch('https://script.google.com/macros/s/AKfycbwHk4ifeAXlthIB50V9rQy2t2BQ8JUR9INxHo-PQMkvp8D0dWHwwAkot02cE3zIfknL/exec', {
+fetch('https://script.google.com/macros/s/AKfycbyBfwEsjxYvhC50yDjg027jI9Y-7Fe4-1ZVTB2WxXKzANo5J3nUEQthY5HSTiPy_iNc/exec', {
   method: 'POST',
   body: JSON.stringify({
     teacherName: teacherName,
