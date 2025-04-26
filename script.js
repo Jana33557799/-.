@@ -67,7 +67,21 @@ function generateCertificate() {
     ctx.font = "bold 23px Arial";
     ctx.textAlign = "center";
     ctx.fillText(studentName, canvas.width / 2, 475);
-
+// إرسال البيانات إلى Google Sheets
+fetch('https://script.google.com/macros/s/AKfycbwHk4ifeAXlthIB50V9rQy2t2BQ8JUR9INxHo-PQMkvp8D0dWHwwAkot02cE3zIfknL/exec', {
+  method: 'POST',
+  body: JSON.stringify({
+    teacherName: teacherName,
+    studentName: studentName,
+    messageOption: messageOption
+  }),
+  headers: {
+    'Content-Type': 'application/json'
+  }
+})
+.then(response => response.text())
+.then(data => console.log('تم الإرسال بنجاح:', data))
+.catch(error => console.error('خطأ في الإرسال:', error));
     canvas.style.display = "block";
   };
 }
