@@ -1,4 +1,5 @@
 
+// دالة لف النص داخل الكانفاس
 function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
   const words = text.split(' ');
   let line = '';
@@ -17,9 +18,25 @@ function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
   ctx.fillText(line, x, y);
 }
 
+// دالة ترسل البيانات إلى جوجل شيتس
+function sendDataToSheet(teacherName, studentName, messageOption) {
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbyBfwEsjxYvhC50yDjg027jI9Y-7Fe4-1ZVTB2WxXKzANo5J3nUEQthY5HSTiPy_iNc/exec';
+  const data = { teacherName, studentName, messageOption };
+
+  fetch(scriptURL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ contents: JSON.stringify(data) })
+  })
+  .then(() => console.log('تم إرسال البيانات بنجاح'))
+  .catch(error => console.error('خطأ أثناء إرسال البيانات:', error));
+}
+
+// دالة إنشاء الشهادة
 function generateCertificate() {
-  const teacherName = document.getElementById("teacherName").value.trim();
-  const studentName = document.getElementById("studentName").value.trim();
+  const teacherName   = document.getElementById("teacherName").value.trim();
+  const studentName   = document.getElementById("studentName").value.trim();
   const messageOption = document.getElementById("thankMessage").value;
 
   if (!teacherName || !studentName) {
@@ -29,22 +46,22 @@ function generateCertificate() {
 
   const canvas = document.getElementById("certificateCanvas");
   const ctx = canvas.getContext("2d");
-
   const image = new Image();
   image.src = "certificate.png";
 
   image.onload = () => {
+    // نظف الكانفاس وارسم الخلفية
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
 
     ctx.fillStyle = "white";
 
-    // اسم عضو هيئة التدريس (فوق)
+    // 1) اسم عضو هيئة التدريس في الأعلى
     ctx.font = "bold 28px Arial";
     ctx.textAlign = "center";
     ctx.fillText(teacherName, canvas.width / 2, 200);
 
-    // نص رسالة الشكر (وسط الصفحة بخط أصغر)
+    // 2) نص رسالة الشكر في المنتصف
     let message = "";
     if (messageOption === "1") {
       message = `إلى من زرع فينا بذور الطموح، وسقاها علمًا واهتمامًا حتى أينعت إنجازًا وتخرجًا…
@@ -63,29 +80,20 @@ function generateCertificate() {
     ctx.textAlign = "right";
     wrapText(ctx, message, canvas.width - 80, 260, 700, 36);
 
-    // اسم الطالب تحت الرسالة
+    // 3) اسم الطالب تحت الرسالة
     ctx.font = "bold 23px Arial";
     ctx.textAlign = "center";
     ctx.fillText(studentName, canvas.width / 2, 475);
-// إرسال البيانات إلى Google Sheets
-fetch('https://script.google.com/macros/s/AKfycbyBfwEsjxYvhC50yDjg027jI9Y-7Fe4-1ZVTB2WxXKzANo5J3nUEQthY5HSTiPy_iNc/exec', {
-  method: 'POST',
-  body: JSON.stringify({
-    teacherName: teacherName,
-    studentName: studentName,
-    messageOption: messageOption
-  }),
-  headers: {
-    'Content-Type': 'application/json'
-  }
-})
-.then(response => response.text())
-.then(data => console.log('تم الإرسال بنجاح:', data))
-.catch(error => console.error('خطأ في الإرسال:', error));
+
+    // 4) نرسل البيانات إلى Google Sheets
+    sendDataToSheet(teacherName, studentName, messageOption);
+
+    // 5) أخيرًا نظهر الكانفاس
     canvas.style.display = "block";
   };
 }
 
+// دالة تحميل الشهادة كصورة
 function downloadImage() {
   const canvas = document.getElementById("certificateCanvas");
   const image = canvas.toDataURL("image/png");
